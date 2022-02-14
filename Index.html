@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Log</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body id="app">
+<div class="dropcolor">
+  <select v-model="dcolor">
+    <option value=""> colors </option>
+    <option value="grey">Grey</option>
+    <option value="yellow">Yellow</option>
+    <option value="blue">Blue</option>
+    <option value="red">Red</option>
+  </select>
+</div>
+<h2>Daily Log</h2>
+<div>
+    <table class="container" :style="{backgroundColor :dcolor}">
+
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Sections</th>
+            <th>Git repo</th>
+            <th>Progress</th>
+            <th>Topic Covered</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr v-for="log in logs"> 
+            <td>{{log.date}}</td>
+            <td>{{log.day}}</td>
+            <td>{{log.sections}}</td>
+            <td> <a :href="log.repo">Git repo </a> </td>
+            <td>
+              <div class="bprogress">
+                <div class="bprogresstext">{{log.progress}}</div>
+                <div class="bprogressvalue" :style=" {width: log.progress}"></div>
+                </div>
+             </td>
+             <td v-for="topic in log.topics" >{{ topic }} </td>
+            
+          </tr>
+        </tbody>
+      </table>
+      </div>
+</body>
+</html>
